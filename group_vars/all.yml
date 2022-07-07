@@ -3,15 +3,15 @@
 ansible_python_interpreter: auto_silent
 networks_cli_compatible: no
 
-timezone: Europe/Berlin
+timezone: America/Los_Angeles
 
 users:
-  - name: ehrenfried
+  - name: lenni
     keys_url: https://github.com/leonardehrenfried.keys
-  - name: tresnyics
+  - name: becky
     keys_url: https://github.com/beck-berry.keys
 
-server_name: trapezeotp
+server_name: sanjoaquin
 
 otp_image: docker.io/opentripplanner/opentripplanner:137e9d0af15ecd207a90e89b61c422850b29c400
 
@@ -19,12 +19,40 @@ otp_image: docker.io/opentripplanner/opentripplanner:137e9d0af15ecd207a90e89b61c
 # the images are quite large, so they are pruned every night
 podman_prune_max_age: 24h
 
-osm_url: https://download.geofabrik.de/europe/germany/brandenburg-latest.osm.pbf
+osm_url: https://download.geofabrik.de/north-america/us/california/norcal-latest.osm.pbf
 gtfs_urls:
-  - https://vbb.de/vbbgtfs
-  - https://opendata.bbnavi.de/vbb-gtfs-flex/gtfs-flex.zip
+  - https://data.trilliumtransit.com/gtfs/movestanislaus-ca-us/movestanislaus-ca-us--flex-v2.zip
+  - https://www.stanrta.org/DocumentCenter/View/609/preview-gtfs.zip
+  - https://data.trilliumtransit.com/gtfs/stanrta-ca-us/stanrta-ca-us--flex-v2.zip
+  - https://data.trilliumtransit.com/gtfs/manteca-ca-us/manteca-ca-us--flex-v2.zip
+  - https://www.sanjoaquinrtd.com/RTD-GTFS/RTD-GTFS.zip
+  - https://data.trilliumtransit.com/gtfs/sanjoaquin-ca-us/sanjoaquin-ca-us--flex-v2.zip
+  - https://data.trilliumtransit.com/gtfs/sanjoaquins-ca-us/sanjoaquins-ca-us.zip
+  - https://data.trilliumtransit.com/gtfs/turlock-ca-us/turlock-ca-us.zip
+  - https://data.trilliumtransit.com/gtfs/turlock-ca-us/turlock-ca-us--flex-v2.zip
+  - https://data.trilliumtransit.com/gtfs/blossomexpress-ca-us/blossomexpress-ca-us.zip
+  - https://api.511.org/transit/datafeeds?api_key=e74ef98b-6e66-4d18-92be-e06755664137&operator_id=CE
+  - https://www.lodi.gov/DocumentCenter/View/2453/lodi_gtfs
+  - https://github.com/transitland/gtfs-archives-not-hosted-elsewhere/raw/master/tracy-tracer.zip
 
-matrix_bot_token: ""
+matrix_bot_token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          32633838663734323936393237626437626232356134646436386233343665336564393363393131
+          3338656238653439393731316562626335636561666462320a326334653064336637386566376466
+          62643562393332653665346239663630353036663237343137616139326566656461646630386339
+          3039633238313235380a313963633339623233343633303537366537356461666533363830323765
+          32303730343932653365316535636334653532663537636331623635336361656565383533653261
+          39616236343563623762616166333232653363643930333139643139303935363261656332633238
+          633262373063643235386538326261353463
 
 otp_port: 8080
-domain_name: otp.trapeze.leonard.io
+# needed for apache's letsencrypt integration
+domain_name: otp.san-joaquin.leonard.io
+
+# ssh hardening
+network_ipv6_enable: true
+ssh_allow_agent_forwarding: true
+ssh_permit_tunnel: true
+ssh_allow_tcp_forwarding: 'yes'
+sftp_enabled: true
+sftp_chroot: true

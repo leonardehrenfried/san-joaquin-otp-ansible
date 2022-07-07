@@ -3,7 +3,7 @@
 # ansible
 
 #PLAYBOOK_CMD:=ANSIBLE_PIPELINING=true ansible-playbook --ask-pass --ask-become
-PLAYBOOK_CMD:=ANSIBLE_PIPELINING=true ansible-playbook #--vault-password-file vault-password
+PLAYBOOK_CMD:=ANSIBLE_PIPELINING=true ansible-playbook --vault-password-file vault-password
 
 provision: galaxy-install
 	${PLAYBOOK_CMD} -i hosts otp.yml
