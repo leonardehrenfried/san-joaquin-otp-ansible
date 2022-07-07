@@ -64,6 +64,20 @@
     - otp.service
     - graphiql.service
 
+- name: Create folder for graphiql
+  ansible.builtin.file:
+    path: /var/graphiql
+    state: directory
+    owner: www-data
+    group: www-data
+
+- name: Copy graphiql HTML file
+  template:
+    src: graphiql.html
+    dest: /var/graphiql/
+    owner: www-data
+    group: www-data
+
 - name: Install apache config files
   ansible.builtin.template:
     src: apache.conf

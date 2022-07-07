@@ -10,6 +10,8 @@ User=otp
 ExecStartPre=-podman stop --ignore %n
 ExecStartPre=-podman rm %n
 
+ExecStartPre=-send-to-matrix "🔁 Starting OTP on {{ inventory_hostname }}"
+
 ExecStart=podman run \
     --name %n \
     --rm -p {{ otp_port }}:8080 \
@@ -20,7 +22,7 @@ ExecStart=podman run \
 ExecStop=podman stop --ignore %n
 ExecStop=-podman rm %n
 
-ExecStopPost=systemd-failure-notification "OTP"
+#ExecStopPost=systemd-failure-notification "OTP"
 
 Restart=on-failure
 
