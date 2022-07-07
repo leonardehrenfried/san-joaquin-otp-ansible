@@ -33,7 +33,7 @@
   "transit": {
     "maxNumberOfTransfers" : 6,
     "dynamicSearchWindow" : {
-      "minWinTimeMinutes" : 120,
+      "minWinTimeMinutes" : 360,
       "maxWinTimeMinutes" : 1440
     }
   },
