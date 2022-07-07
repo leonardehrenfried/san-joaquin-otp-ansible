@@ -50,7 +50,6 @@
     - otp.service
     - otp-restart.service
     - otp-restart.timer
-    - graphiql.service
 
 - name: Start timers
   systemd:
@@ -62,7 +61,6 @@
     - otp-restart.timer
     - graph-build.timer
     - otp.service
-    - graphiql.service
 
 - name: Create folder for graphiql
   ansible.builtin.file:
