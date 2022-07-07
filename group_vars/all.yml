@@ -56,3 +56,6 @@ ssh_permit_tunnel: true
 ssh_allow_tcp_forwarding: 'yes'
 sftp_enabled: true
 sftp_chroot: true
+
+# swap config
+swap_file_size_mb: '8000'
