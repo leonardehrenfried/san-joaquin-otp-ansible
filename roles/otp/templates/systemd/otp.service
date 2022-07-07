@@ -13,13 +13,14 @@ ExecStartPre=-podman rm %n
 ExecStart=podman run \
     --name %n \
     --rm -p {{ otp_port }}:8080 \
+    -e JAVA_OPTS="-Xmx3G" \
     -v /var/graph-build/latest/:/var/opentripplanner:z \
     {{ otp_image }} --load --serve
 
 ExecStop=podman stop --ignore %n
 ExecStop=-podman rm %n
 
-#ExecStopPost=systemd-failure-notification "Graph build"
+ExecStopPost=systemd-failure-notification "OTP"
 
 Restart=on-failure
 

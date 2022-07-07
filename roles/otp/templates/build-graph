@@ -68,7 +68,7 @@ podman run \
   --name ${CONTAINER_NAME} \
   --rm \
   --cpu-shares 512 \
-  -e JAVA_OPTS="-Xmx5G" \
+  -e JAVA_OPTS="-Xmx3G" \
   ${IMAGE_NAME} --build --save
 
 # move the graph and its config from /build to /latest

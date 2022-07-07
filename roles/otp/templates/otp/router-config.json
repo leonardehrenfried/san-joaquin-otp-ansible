@@ -34,7 +34,7 @@
     "maxNumberOfTransfers" : 6,
     "dynamicSearchWindow" : {
       "minWinTimeMinutes" : 120,
-      "maxWinTimeMinutes" : 360
+      "maxWinTimeMinutes" : 1440
     }
   },
   "updaters": []

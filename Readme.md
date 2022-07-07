@@ -1,6 +1,6 @@
-## trapeze-otp-ansible
+## san-joaquin-otp-ansible
 
-Install Trapeze's OTP with ansible
+Install San Joaquin's OTP with ansible
 
 - `make provision`: connects to the host and applies the playbook there
 
