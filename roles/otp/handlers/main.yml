@@ -1,0 +1,10 @@
+---
+- name: Start graph build
+  systemd:
+    state: restarted
+    name: graph-build
+
+- name: Restart apache
+  systemd:
+    state: restarted
+    name: apache2

@@ -1,0 +1,82 @@
+---
+- name: Install base packages
+  package:
+    name:
+      - htop
+      - tree
+      - neovim
+      - cron-apt
+      - ripgrep
+      - autojump
+      - jq
+      - zsh
+      - unzip
+      - tar
+    state: present
+
+- name: Install global aliases
+  template: src=alias.sh dest=/etc/profile.d/
+
+- hostname:
+    name: "{{ server_name }}"
+
+- name: Add hostname to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "127.0.0.1 {{ server_name }}"
+
+- name: Set timezone to Europe/Berlin
+  timezone:
+    name: '{{ timezone }}'
+
+- name: Configure passwordless sudo
+  ansible.builtin.copy:
+    content: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    dest: /etc/sudoers.d/passwordless
+
+- name: Create user and add to groups
+  user:
+    name: "{{ item.name }}"
+    groups:
+      - sudo
+      - systemd-journal
+    append: yes
+    state: present
+    createhome: yes
+    shell: /bin/bash
+  with_items: "{{ users }}"
+
+- name: Set authorized keys taken from url
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ item.keys_url }}"
+  with_items: "{{ users }}"
+
+- name: Install systemd files for podman-prune
+  template: src={{ item }} dest=/etc/systemd/system/
+  with_items:
+    - podman-prune.service
+    - podman-prune.timer
+
+- name: Start podman-prune.timer
+  systemd:
+    name: podman-prune.timer
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- name: Copy send-to-matrix script
+  template:
+    src: "{{ item }}"
+    dest: /usr/local/bin
+    mode: 711
+  with_items:
+    - send-to-matrix
+    - systemd-failure-notification
+
+- name: Install journald.conf
+  template: src={{ item }} dest=/etc/systemd/
+  with_items:
+    - journald.conf
+  notify: Restart systemd-journald

@@ -1,0 +1,10 @@
+---
+
+- name: Apply the OTP stack
+  hosts: all
+  # use this user if you don't have an account yet
+  user: ehrenfried
+  become: yes
+  roles:
+    - base
+    - otp

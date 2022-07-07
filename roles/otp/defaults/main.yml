@@ -1,0 +1,3 @@
+---
+otp_port: 8080
+graphiql_port: 4000

@@ -1,0 +1,27 @@
+[Unit]
+Description=Run OTP
+
+# Restart once within 20 minutes so that an intermittent network failures are gracefully handled
+StartLimitIntervalSec=1200
+StartLimitBurst=2
+
+[Service]
+User=otp
+ExecStartPre=-podman stop --ignore %n
+ExecStartPre=-podman rm %n
+
+ExecStart=podman run \
+    --name %n \
+    --rm -p {{ otp_port }}:8080 \
+    -v /var/graph-build/latest/:/var/opentripplanner:z \
+    {{ otp_image }} --load --serve
+
+ExecStop=podman stop --ignore %n
+ExecStop=-podman rm %n
+
+#ExecStopPost=systemd-failure-notification "Graph build"
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

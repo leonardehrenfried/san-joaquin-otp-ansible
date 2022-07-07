@@ -1,0 +1,41 @@
+{
+  "routingDefaults": {
+    "walkSpeed": 1.4,
+    "transferSlack": 100,
+    "waitReluctance": 0.4,
+    "waitAtBeginningFactor": 0.7,
+    "walkReluctance": 1.75,
+    "stairsReluctance": 1.65,
+    "walkBoardCost": 540,
+    "allowKeepingRentedBicycleAtDestination": true,
+    "keepingRentedBicycleAtDestinationCost": 180,
+    "numItineraries": 5,
+    "bikeTriangleSafetyFactor": 0.4,
+    "bikeTriangleSlopeFactor": 0.3,
+    "bikeTriangleTimeFactor": 0.3,
+    "bikeRentalPickupTime": 180,
+    "bikeRentalPickupCost": 850,
+    "bannedBikeRentalNetworks": [],
+    "maxAccessEgressDurationForMode": {
+      "BIKE_TO_PARK": "30m",
+      "CAR_TO_PARK": "30m",
+      "BIKE_RENTAL": "30m",
+      "BIKE": "30m",
+      "WALK": "30m"
+    },
+    "itineraryFilters" : {
+      "flexOnlyToDestination": false,
+      "bikeRentalDistanceRatio": 0.75,
+      "parkAndRideDurationRatio": 0.6,
+      "minBikeParkingDistance": 0
+    }
+  },
+  "transit": {
+    "maxNumberOfTransfers" : 6,
+    "dynamicSearchWindow" : {
+      "minWinTimeMinutes" : 120,
+      "maxWinTimeMinutes" : 360
+    }
+  },
+  "updaters": []
+}

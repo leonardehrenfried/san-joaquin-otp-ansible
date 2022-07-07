@@ -1,0 +1,72 @@
+---
+- name: Install packages
+  package:
+    name:
+      - zip
+      - moreutils #sponge command
+    state: present
+
+- name: Create user otp
+  user:
+    name: otp
+    append: yes
+    state: present
+    createhome: yes
+    shell: /bin/bash
+
+- name: Create folder for graph build
+  ansible.builtin.file:
+    path: /var/graph-build
+    state: directory
+    owner: otp
+    group: otp
+
+- name: Copy build-graph script
+  template:
+    src: build-graph
+    dest: /var/graph-build/
+    mode: a+x
+    owner: otp
+    group: otp
+  notify: Start graph build
+
+- name: Copy OTP config
+  template:
+    src: otp/{{ item }}
+    dest: /var/graph-build/build/
+    owner: otp
+    group: otp
+  with_items:
+    - otp-config.json
+    - router-config.json
+    - build-config.json
+  notify: Start graph build
+
+- name: Install systemd files
+  ansible.builtin.template: src=systemd/{{ item }} dest=/etc/systemd/system/
+  with_items:
+    - graph-build.service
+    - graph-build.timer
+    - otp.service
+    - otp-restart.service
+    - otp-restart.timer
+    - graphiql.service
+
+- name: Start timers
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  with_items:
+    - otp-restart.timer
+    - graph-build.timer
+    - otp.service
+    - graphiql.service
+
+- name: Install apache config files
+  ansible.builtin.template:
+    src: apache.conf
+    dest: /etc/apache2/sites-enabled/
+  notify: Restart apache
+

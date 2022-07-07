@@ -1,0 +1,30 @@
+---
+# silence ansible warnings
+ansible_python_interpreter: auto_silent
+networks_cli_compatible: no
+
+timezone: Europe/Berlin
+
+users:
+  - name: ehrenfried
+    keys_url: https://github.com/leonardehrenfried.keys
+  - name: tresnyics
+    keys_url: https://github.com/beck-berry.keys
+
+server_name: trapezeotp
+
+otp_image: docker.io/opentripplanner/opentripplanner:137e9d0af15ecd207a90e89b61c422850b29c400
+
+# how long should a container image be unused before it is deleted
+# the images are quite large, so they are pruned every night
+podman_prune_max_age: 24h
+
+osm_url: https://download.geofabrik.de/europe/germany/brandenburg-latest.osm.pbf
+gtfs_urls:
+  - https://vbb.de/vbbgtfs
+  - https://opendata.bbnavi.de/vbb-gtfs-flex/gtfs-flex.zip
+
+matrix_bot_token: ""
+
+otp_port: 8080
+domain_name: otp.trapeze.leonard.io
