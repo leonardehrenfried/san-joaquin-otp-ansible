@@ -13,7 +13,7 @@ users:
 
 server_name: sanjoaquin
 
-otp_image: docker.io/opentripplanner/opentripplanner:137e9d0af15ecd207a90e89b61c422850b29c400
+otp_image: docker.io/lehrenfried/opentripplanner:fares-v2
 
 # how long should a container image be unused before it is deleted
 # the images are quite large, so they are pruned every night
@@ -23,12 +23,12 @@ osm_url: https://download.geofabrik.de/north-america/us/california/norcal-latest
 gtfs_urls:
   - https://data.trilliumtransit.com/gtfs/movestanislaus-ca-us/movestanislaus-ca-us--flex-v2.zip
   - https://www.stanrta.org/DocumentCenter/View/609/preview-gtfs.zip
-  - https://data.trilliumtransit.com/gtfs/stanrta-ca-us/stanrta-ca-us--flex-v2.zip
-  - https://data.trilliumtransit.com/gtfs/manteca-ca-us/manteca-ca-us--flex-v2.zip
+  - https://leonard.io/trillium/StanRTA.gtfs.zip
+  - https://leonard.io/trillium/manteca.gtfs.zip
   - https://www.sanjoaquinrtd.com/RTD-GTFS/RTD-GTFS.zip
   - https://data.trilliumtransit.com/gtfs/sanjoaquin-ca-us/sanjoaquin-ca-us--flex-v2.zip
-  - https://data.trilliumtransit.com/gtfs/sanjoaquins-ca-us/sanjoaquins-ca-us.zip
-  - https://data.trilliumtransit.com/gtfs/turlock-ca-us/turlock-ca-us.zip
+  - https://leonard.io/trillium/SJRTD.gtfs.zip
+  - https://leonard.io/otp/turlock-fares-v2.gtfs.zip
   - https://data.trilliumtransit.com/gtfs/turlock-ca-us/turlock-ca-us--flex-v2.zip
   - https://data.trilliumtransit.com/gtfs/blossomexpress-ca-us/blossomexpress-ca-us.zip
   - https://api.511.org/transit/datafeeds?api_key=e74ef98b-6e66-4d18-92be-e06755664137&operator_id=CE
