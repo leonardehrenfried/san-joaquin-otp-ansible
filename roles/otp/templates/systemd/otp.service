@@ -13,6 +13,7 @@ ExecStartPre=-podman rm %n
 ExecStartPre=-send-to-matrix "🔁 Starting OTP on {{ inventory_hostname }}"
 
 ExecStart=podman run \
+    --pull=always\
     --name %n \
     --rm -p {{ otp_port }}:8080 \
     -e JAVA_OPTS="-Xmx3G" \
