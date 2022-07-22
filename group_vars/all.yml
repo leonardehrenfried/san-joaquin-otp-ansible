@@ -21,19 +21,19 @@ podman_prune_max_age: 24h
 
 osm_url: https://download.geofabrik.de/north-america/us/california/norcal-latest.osm.pbf
 gtfs_urls:
-  - https://data.trilliumtransit.com/gtfs/movestanislaus-ca-us/movestanislaus-ca-us--flex-v2.zip
-  - https://www.stanrta.org/DocumentCenter/View/609/preview-gtfs.zip
+  #- https://data.trilliumtransit.com/gtfs/movestanislaus-ca-us/movestanislaus-ca-us--flex-v2.zip
+  #- https://www.stanrta.org/DocumentCenter/View/609/preview-gtfs.zip
   - https://leonard.io/trillium/StanRTA.gtfs.zip
   - https://leonard.io/trillium/manteca.gtfs.zip
-  - https://www.sanjoaquinrtd.com/RTD-GTFS/RTD-GTFS.zip
-  - https://data.trilliumtransit.com/gtfs/sanjoaquin-ca-us/sanjoaquin-ca-us--flex-v2.zip
+    #- https://www.sanjoaquinrtd.com/RTD-GTFS/RTD-GTFS.zip
+    #- https://data.trilliumtransit.com/gtfs/sanjoaquin-ca-us/sanjoaquin-ca-us--flex-v2.zip
   - https://leonard.io/trillium/SJRTD.gtfs.zip
   - https://leonard.io/otp/turlock-fares-v2.gtfs.zip
-  - https://data.trilliumtransit.com/gtfs/turlock-ca-us/turlock-ca-us--flex-v2.zip
-  - https://data.trilliumtransit.com/gtfs/blossomexpress-ca-us/blossomexpress-ca-us.zip
-  - https://api.511.org/transit/datafeeds?api_key=e74ef98b-6e66-4d18-92be-e06755664137&operator_id=CE
-  - https://www.lodi.gov/DocumentCenter/View/2453/lodi_gtfs
-  - https://github.com/transitland/gtfs-archives-not-hosted-elsewhere/raw/master/tracy-tracer.zip
+    #- https://data.trilliumtransit.com/gtfs/turlock-ca-us/turlock-ca-us--flex-v2.zip
+    #- https://data.trilliumtransit.com/gtfs/blossomexpress-ca-us/blossomexpress-ca-us.zip
+    #- https://api.511.org/transit/datafeeds?api_key=e74ef98b-6e66-4d18-92be-e06755664137&operator_id=CE
+    #- https://www.lodi.gov/DocumentCenter/View/2453/lodi_gtfs
+    #- https://github.com/transitland/gtfs-archives-not-hosted-elsewhere/raw/master/tracy-tracer.zip
 
 matrix_bot_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
